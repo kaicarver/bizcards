@@ -6,7 +6,8 @@ Business cards using HTML + CSS + JavaScript + chromium + printer
 Try it out here:  
 http://htmlpreview.github.io/?https://github.com/kaicarver/bizcards/blob/master/taipeihack_bizcards.html
 
-One page produces 16 A8-size business cards. They're a little smaller than most business cards, 
+One page produces 16 [A8-size business cards](http://en.wikipedia.org/wiki/Business_Card#Dimensions).
+They're a little smaller than most business cards, 
 but the nice thing is you can easily make 16 cards in four or five cuts (if you have the right cutting tool).
 
 Printing works for me on Ubuntu with Chromium on the Taipei Hackerspace HP Photosmart C6300  
