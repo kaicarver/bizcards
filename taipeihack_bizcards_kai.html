@@ -12,36 +12,59 @@
       margin-right:0.0cm;
       margin:0.0cm;
   }
+  .outsidecard { border: 1px solid white; }
 }
 html{-webkit-print-color-adjust:exact;}
-body { margin: 0px; padding 0px; xbackground-color: yellow; -xwebkit-transform: rotate(-90deg); }
-.outsidecard { position: absolute; border: 1px solid white; xbackground-color: pink; padding: 0px; }
-.insidecard { font-family: Arial; font-size: 9pt; padding: 10px; position: relative; background-color: white; overflow: hidden; }
-.l1 { font-size: 12pt; }
-.l3 { height: 70px; }
+body { margin: 0px; padding 0px; }
+.outsidecard { position: absolute; border: 1px solid black; padding: 0px; }
+.insidecard { font-family: Arial; font-size: 9pt; padding: 10px; position: relative; overflow: hidden; }
+.l1 { font-size: 15pt; }
+.l2 { font-size: 10.2pt; }
+.l3 { height: 75px; }
+.l4, .l5, .l7 { font-size: 8pt; }
+.personal { position: relative; top: -36px; left: 120px; width: 140px; font-size: 8pt; text-align: right; }
+.name { font-size: 9pt; }
 </style>
 <script>
+var data = new Array();
+data["name"] = "Kai Carver";
+data["phone"] = "0931157391";
+data["email"] = "kaicarver@gmail.com";
+function modify(element) {
+  var className = element.classList[0];
+  var newVal = prompt("Change text:", data[className]);
+  if (newVal != null) {
+    data[className] = newVal;
+    fill();
+  }
+}
 function fill() {
   var cardWidth = 280;
   var cardHeight = 200;
   var numCards = 16;
   var numCols = 4;
-  var numRows = 10; // or whatever
   var initialHorSpacing = 10;
   var horSpacing = 10;
   var initialVerSpacing = 15;
   var verSpacing = 5;
+  document.body.innerHTML = '';
   for (var i = 0; i < numCards; i++) {
-    var topPos = initialVerSpacing + (cardHeight + verSpacing) * Math.floor(i/numCols % numRows);
+    var topPos = initialVerSpacing + (cardHeight + verSpacing) * Math.floor(i/numCols);
     var leftPos = initialHorSpacing + (cardWidth + horSpacing) * (i % numCols);
     document.body.innerHTML += '\
 <div class="outsidecard" id="card'+i+'" style="width: '+cardWidth+'px; height: '+cardHeight+'px; top: '+topPos+'px; left: '+leftPos+'px">\
 <div class="insidecard">\
 <div class="l1">臺北創客空間</div>\
 <div class="l2">Taipei Hackerspace</div>\
-<div class="l3">Kai Carver</div>\
-<div class="l4">taipeihackerspace@googlegroups.com</div>\
+<div class="l3">\
+<div class="personal">\
+<div class="name" onclick="modify(this)">'+data["name"]+'</div>\
+<div class="phone" onclick="modify(this)">'+data["phone"]+'</div>\
+<div class="email" onclick="modify(this)">'+data["email"]+'</div>\
+</div>\
+</div>\
 <div class="l5">0225507630</div>\
+<div class="l4">taipeihackerspace@googlegroups.com</div>\
 <div class="l6">台北市太原路133巷26號4樓</div>\
 <div class="l7">4th floor, 26 Lane 133 Taiyuan Rd. Taipei</div>\
 </div>\
