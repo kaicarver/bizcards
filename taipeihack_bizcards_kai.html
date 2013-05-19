@@ -16,7 +16,7 @@
 }
 html{-webkit-print-color-adjust:exact;}
 body { margin: 0px; padding 0px; }
-.outsidecard { position: absolute; border: 1px solid black; padding: 0px; }
+.outsidecard { position: absolute; border: 1px solid white; padding: 0px; }
 .insidecard { font-family: Arial; font-size: 9pt; padding: 10px; position: relative; overflow: hidden; }
 .l1 { font-size: 15pt; }
 .l2 { font-size: 10.2pt; }
@@ -24,6 +24,32 @@ body { margin: 0px; padding 0px; }
 .l4, .l5, .l7 { font-size: 8pt; }
 .personal { position: relative; top: -36px; left: 120px; width: 140px; font-size: 8pt; text-align: right; }
 .name { font-size: 9pt; }
+.message {
+  width: 300px; height: 100px;
+  background-color: lightgray;
+  position: absolute;
+  padding: 10px;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: 1px dotted black;
+  display: table-cell;
+  vertical-align: middle;
+  font-family: Arial;
+}
+.message p { 
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  text-align: center;
+}
+.message .close {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
 </style>
 <script>
 var data = new Array();
@@ -71,8 +97,11 @@ function fill() {
 </div>';
   }
 }
+function info() {
+  document.body.innerHTML += '<div class="message" onclick="this.style.display=\'none\'"><p>Business cards ready for printing. You can also click on a field to change it.</p><div class="close">x</div></div>';
+}
 </script>
 </head>
-<body onload="fill()">
+<body onload="fill(); info()">
 </body>
 </html>
