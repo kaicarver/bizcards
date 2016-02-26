@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Taipei Hackerspace business cards</title>
+<style>
+/* force chrome to use every background color and image exactly as coded */
+@media print { 
+  @page{
+      size: A4 landscape;
+      margin-left:0.0cm;
+      margin-right:0.0cm;
+      margin:0.0cm;
+  }
+}
+html{-webkit-print-color-adjust:exact;}
+body { margin: 0px; padding 0px; xbackground-color: yellow; -xwebkit-transform: rotate(-90deg); }
+.outsidecard { position: absolute; border: 1px solid white; xbackground-color: pink; padding: 0px; }
+.insidecard { font-family: Arial; font-size: 9pt; padding: 10px; position: relative; background-color: white; overflow: hidden; }
+.l1 { font-size: 16pt; text-align:center; }
+.l2 { font-size: 12pt; text-align:center; }
+.l3 { height: 70px; }
+</style>
+<script>
+var names = [
+    "Thomas Kuiper",
+    "Jimmy Roy",
+    "Mose",
+    "Pierre Equoy",
+    "David Andreoletti",
+    "Momday Dok",
+    "Regis Vidal",
+    "Vincent Alliaga",
+    "Kai Carver",
+    "Vincent Cantin",
+    "Sebastien Vincent",
+    "Benjamin Durin",
+    "Remi Oum",
+    "Alexandre Chatiron",
+    "Mickael Ange",
+    "Maxime Lefevre",
+    "Nanbei",
+    "Gregory Chocoloff",
+    "Patrice Hermine",
+    ""
+  ];
+function fill() {
+  var cardWidth = 280;
+  var cardHeight = 200;
+  var numCards = 20;
+  var numCols = 4;
+  var numRows = 10; // or whatever
+  var initialHorSpacing = 10;
+  var horSpacing = 10;
+  var initialVerSpacing = 15;
+  var verSpacing = 5;
+  for (var i = 0; i < numCards; i++) {
+    var topPos = initialVerSpacing + (cardHeight + verSpacing) * Math.floor(i/numCols % numRows);
+    var leftPos = initialHorSpacing + (cardWidth + horSpacing) * (i % numCols);
+    document.body.innerHTML += '\
+<div class="outsidecard" id="card'+i+'" style="width: '+cardWidth+'px; height: '+cardHeight+'px; top: '+topPos+'px; left: '+leftPos+'px">\
+<div class="insidecard">\
+<div class="l2">while (42)</div>\
+<div class="l3"></div>\
+<div class="l1">'+names[i]+'</div>\
+</div>\
+</div>';
+  }
+}
+</script>
+</head>
+<body onload="fill()">
+</body>
+</html>
