@@ -24,9 +24,11 @@ body { margin: 0px; padding 0px; }
 .l4, .l5, .l7 { font-size: 8pt; }
 .personal { position: relative; top: -36px; left: 120px; width: 140px; font-size: 8pt; text-align: right; }
 .name { font-size: 10pt; }
+.phone { }
 .email { font-size: 7pt; }
+.verso { transform: scale(-1, -1); }
 .message {
-  width: 350px; height: 110px;
+  width: 350px; height: 125px;
   background-color: lightgray;
   position: absolute;
   padding: 10px;
@@ -43,7 +45,7 @@ body { margin: 0px; padding 0px; }
 .message p { 
   margin-left: auto;
   margin-right: auto;
-  width: 250px;
+  width: 260px;
   text-align: center;
 }
 .message .close {
@@ -57,6 +59,11 @@ var data = new Array();
 data["name"] = "Kai Carver";
 data["phone"] = "0931157391";
 data["email"] = "kaicarver@gmail.com";
+data["verso"] = "<p>be bold</p>\
+<p>be open</p>\
+<p>move fast</p>\
+<p>focus on impact</p>\
+<p>build social value</p>";
 function modify(element) {
   var className = element.classList[0];
   var newVal = prompt("Change text:", data[className]);
@@ -74,10 +81,21 @@ function fill() {
   var horSpacing = 10;
   var initialVerSpacing = 15;
   var verSpacing = 5;
+  var foldableCard = (location.hash === '#foldable');
   document.body.innerHTML = '';
   for (var i = 0; i < numCards; i++) {
     var topPos = initialVerSpacing + (cardHeight + verSpacing) * Math.floor(i/numCols);
     var leftPos = initialHorSpacing + (cardWidth + horSpacing) * (i % numCols);
+    if (foldableCard && Math.floor(i/numCols) % 2 == 0) {
+    document.body.innerHTML += '\
+<div class="outsidecard" id="card'+i+'" style="width: '+cardWidth+'px; height: '+cardHeight+'px; top: '+topPos+'px; left: '+leftPos+'px">\
+<div class="insidecard">\
+<div class="verso" onclick="modify(this)">\
+'+data["verso"]+'\
+</div>\
+</div>\
+</div>';      
+    } else {
     document.body.innerHTML += '\
 <div class="outsidecard" id="card'+i+'" style="width: '+cardWidth+'px; height: '+cardHeight+'px; top: '+topPos+'px; left: '+leftPos+'px">\
 <div class="insidecard">\
@@ -96,10 +114,11 @@ function fill() {
 <div class="l7">4th floor, 26 Lane 133 Taiyuan Rd. Taipei</div>\
 </div>\
 </div>';
+    }
   }
 }
 function info() {
-  document.body.innerHTML += '<div class="message" onclick="this.style.display=\'none\'"><p>Hackerspace business cards<br>ready for printing.<br>You can click on name, phone, or email fields to personalize them.</p><div class="close">x</div></div>';
+  document.body.innerHTML += '<div class="message" onclick="this.style.display=\'none\'"><p>Taipei Hackerspace business cards<br>ready for printing.<br>You can click on name, phone, or email fields to personalize them.<br>(also try <a href="#foldable" target="_blank">#foldable</a>)</p><div class="close">x</div></div>';
 }
 </script>
 </head>
